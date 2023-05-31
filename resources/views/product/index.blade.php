@@ -3,6 +3,7 @@
  
 @section('body')
     <div class="d-flex align-items-center justify-content-between">
+        @livewire('product-list')
         <h1 class="mb-0">Daftar Product</h1>
         <a href="{{ route('product.create') }}" class="btn btn-primary">Add Product</a>
     </div>

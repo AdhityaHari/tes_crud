@@ -156,6 +156,7 @@ return [
     */
 
     'providers' => ServiceProvider::defaultProviders()->merge([
+        Livewire\LivewireServiceProvider::class,
         /*
          * Package Service Providers...
          */
