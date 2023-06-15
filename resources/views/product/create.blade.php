@@ -9,7 +9,12 @@
             <div class="col">
                 <input type="text" name="title" class="form-control" placeholder="Title">
             </div>
-            <div class="col">
+            <div class="col form-group">
+                <label for="image">Product Image:</label>
+                <input type="file" class="form-control" id="image" name="image">
+            </div>
+
+            <div class="mb-3">
                 <input type="text" name="price" class="form-control" placeholder="Price">
             </div>
         </div>

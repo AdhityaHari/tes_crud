@@ -18,6 +18,7 @@
             <tr>
                 <th>#</th>
                 <th>Title</th>
+                <th>Image</th>
                 <th>Price</th>
                 <th>Product Code</th>
                 <th>Description</th>
@@ -30,6 +31,9 @@
                     <tr>
                         <td class="align-middle">{{ $loop->iteration }}</td>
                         <td class="align-middle">{{ $rs->title }}</td>
+                        <td>
+                            <img src="{{ asset('storage/' . $rs->image) }}" alt="Product Image" width="100">
+                        </td>
                         <td class="align-middle">{{ $rs->price }}</td>
                         <td class="align-middle">{{ $rs->product_code }}</td>
                         <td class="align-middle">{{ $rs->description }}</td>

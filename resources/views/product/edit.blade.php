@@ -11,6 +11,11 @@
                 <label class="form-label">Title</label>
                 <input type="text" name="title" class="form-control" placeholder="Title" value="{{ $product->title }}" >
             </div>
+            <div class="form-group">
+                <label for="image">Product Image:</label>
+                <input type="file" class="form-control" id="image" name="image">
+            </div>
+            
             <div class="col mb-3">
                 <label class="form-label">Price</label>
                 <input type="text" name="price" class="form-control" placeholder="Price" value="{{ $product->price }}" >
