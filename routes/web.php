@@ -19,3 +19,4 @@ use App\Http\Controllers\ProductController;
 // });
 
 Route::resource('/product', ProductController::class);
+Route::get('/product/search', 'ProductController@search')->name('products.search');

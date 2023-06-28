@@ -3,7 +3,7 @@
 @section('body')
     <h1 class="mb-0">Edit Product</h1>
     <hr />
-    <form action="{{ route('product.update', $product->id) }}" method="POST">
+    <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
         <div class="row">
@@ -33,7 +33,7 @@
         </div>
         <div class="row">
             <div class="d-grid">
-                <button class="btn btn-warning">Update</button>
+                <button class="btn btn-warning" type="submit">Update</button>
             </div>
         </div>
     </form>

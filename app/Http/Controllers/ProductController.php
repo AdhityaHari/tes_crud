@@ -40,9 +40,10 @@ class ProductController extends Controller
     {
         // Validasi input
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'title' => 'required',
             'price' => 'required',
+            'product_code' => 'required',
+            'description' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -51,23 +52,37 @@ class ProductController extends Controller
 
         // Buat produk baru
         $product = new Product();
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
+        $product->title = $request->input('title');
         $product->price = $request->input('price');
+        $product->product_code = $request->input('product-code');
+        $product->description = $request->input('description');
         $product->image = $imagePath;
         $product->save();
 
         // Redirect atau tampilkan pesan sukses
-        return redirect()->route('products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('product.index')->with('success', 'Product created successfully.');
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->input('search');
+        $product = Product::where('title', 'LIKE', "%$search%")
+                    ->orWhere('price', 'LIKE', "%$search%")
+                    ->orWhere('product-code', 'LIKE', "%$search%")
+                    ->orWhere('description', 'LIKE', "%$search%")
+                    ->get();
+
+        return view('product.index', compact('product'));
     }
 
     public function update(Request $request, $id)
     {
-        // Validasi input
+        // dd($request->all());// Validasi input
         $request->validate([
-            'name' => 'required',
-            'description' => 'required',
+            'title' => 'required',
             'price' => 'required',
+            'product_code' => 'required',
+            'description' => 'required',
             'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
@@ -77,7 +92,7 @@ class ProductController extends Controller
         // Simpan gambar jika ada
         if ($request->hasFile('image')) {
             // Hapus gambar yang lama
-            Storage::disk('public')->delete($product->image);
+            // Storage::disk('public')->delete($product->image);
 
             // Simpan gambar yang baru
             $imagePath = $request->file('image')->store('images/products', 'public');
@@ -85,13 +100,14 @@ class ProductController extends Controller
         }
 
         // Perbarui detail produk
-        $product->name = $request->input('name');
-        $product->description = $request->input('description');
+        $product->title = $request->input('title');
         $product->price = $request->input('price');
+        $product->product_code = $request->input('product_code');
+        $product->description = $request->input('description');
         $product->save();
 
         // Redirect atau tampilkan pesan sukses
-        return redirect()->route('products.index')->with('success', 'Product updated successfully.');
+        return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }   
 
     /**

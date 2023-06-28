@@ -7,6 +7,14 @@
         <h1 class="mb-0">Daftar Product</h1>
         <a href="{{ route('product.create') }}" class="btn btn-primary">Add Product</a>
     </div>
+    <form action="{{ route('product.search') }}" method="GET">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Search" name="search" value="{{ old('search') }}">
+            <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Search</button>
+            </div>
+        </div>
+    </form>
     <hr />
     @if(Session::has('success'))
         <div class="alert alert-success" role="alert">
